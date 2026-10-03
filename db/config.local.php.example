@@ -1,0 +1,17 @@
+<?php
+
+return [
+    'DB_HOST' => '127.0.0.1',
+    'DB_PORT' => '3306',
+    'DB_NAME' => 'invitaciones',
+    'DB_USER' => 'tu_usuario_mysql',
+    'DB_PASS' => 'tu_password_mysql',
+    'CORS_ORIGINS' => 'http://localhost:5173,http://127.0.0.1:8000,https://tu-dominio.com',
+    'API_KEY' => '',
+
+    // Pagos en linea (modulo de registro). Sin token, los pedidos quedan como "pendiente_pago".
+    'MP_ACCESS_TOKEN' => '',
+    // URL publica del sitio (regreso despues de pagar) y de esta carpeta /db (avisos de pago).
+    'SITE_URL' => 'https://tu-dominio.com',
+    'PUBLIC_API_URL' => 'https://tu-dominio.com/db',
+];

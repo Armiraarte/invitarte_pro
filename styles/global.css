@@ -1,0 +1,723 @@
+@import '@fontsource-variable/bricolage-grotesque/wght.css';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
+@import '@fontsource/cormorant-garamond/500-italic.css';
+@import '@fontsource/dancing-script/400.css';
+@import '@fontsource/dancing-script/700.css';
+
+@import 'tailwindcss' source(none);
+
+/*
+  Solo escaneamos el codigo que usa la app. Antes se escaneaba todo el proyecto
+  (invitaciones generadas, dist, node_modules anidados), lo que volvia lento el dev server y el build.
+*/
+@source '../index.html';
+@source '../App.tsx';
+@source '../components';
+@source '../lib';
+@source '../services';
+@source '../laboratorio/AdminPanel.tsx';
+@source '../laboratorio/components';
+@source '../laboratorio/services';
+
+:root {
+  --app-bg: #edf4f8;
+  --app-bg-strong: #f8fbfe;
+  --app-surface: rgba(255, 255, 255, 0.86);
+  --app-surface-strong: rgba(255, 255, 255, 0.96);
+  --app-surface-muted: rgba(248, 250, 252, 0.92);
+  --app-border: rgba(148, 163, 184, 0.24);
+  --app-border-strong: rgba(148, 163, 184, 0.38);
+  --app-text: #0f172a;
+  --app-muted: #475569;
+  --app-tertiary: #64748b;
+  --app-primary: #0f172a;
+  --app-primary-hover: #1e293b;
+  --app-accent: #2563eb;
+  --app-accent-strong: #0ea5e9;
+  --app-glow: rgba(37, 99, 235, 0.18);
+}
+
+/* Scroll nativo del documento: el navegador lo mueve en la GPU sin repintar la pagina */
+html {
+  font-size: 15px;
+  color-scheme: dark;
+  background: #050507;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', sans-serif;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  background: #050507;
+  color: var(--app-text);
+  min-height: 100%;
+}
+
+/* Panel del evento y editor: layout de aplicacion con alto fijo y scroll interno */
+html.app-shell,
+html.app-shell body,
+html.app-shell #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 9999px;
+}
+
+html.invitarte-custom-cursor,
+html.invitarte-custom-cursor body,
+html.invitarte-custom-cursor *,
+html.invitarte-custom-cursor *::before,
+html.invitarte-custom-cursor *::after {
+  cursor: none !important;
+}
+
+html.invitarte-custom-cursor [data-native-cursor='true'] {
+  cursor: auto !important;
+}
+
+.font-serif {
+  font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', sans-serif;
+  font-optical-sizing: auto;
+}
+
+.font-script {
+  font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', sans-serif;
+  font-optical-sizing: auto;
+}
+
+::selection {
+  background: rgba(244, 114, 182, 0.35);
+  color: #ffffff;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgba(5, 5, 7, 0.9),
+    0 0 0 4px rgba(167, 139, 250, 0.7);
+}
+
+.app-shell-card {
+  border: 1px solid var(--app-border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.9) 100%);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 20px 44px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.app-shell-card-soft {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(248, 250, 252, 0.82) 100%);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 16px 34px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.74);
+}
+
+.app-cta-primary {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+  color: #ffffff;
+  box-shadow:
+    0 16px 32px rgba(29, 78, 216, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.app-cta-primary:hover,
+.app-cta-primary:focus-visible {
+  background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
+  box-shadow:
+    0 18px 36px rgba(29, 78, 216, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.app-cta-secondary {
+  border: 1px solid var(--app-border-strong);
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--app-text);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 14px 28px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.app-cta-secondary:hover,
+.app-cta-secondary:focus-visible {
+  border-color: rgba(37, 99, 235, 0.22);
+  background: rgba(255, 255, 255, 0.94);
+  transform: translateY(-1px);
+}
+
+.app-inline-pill {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.app-field {
+  border: 1px solid var(--app-border-strong);
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--app-text);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 10px 22px rgba(15, 23, 42, 0.04);
+}
+
+.app-field::placeholder {
+  color: #94a3b8;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d8cabc;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c0ae9d;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar,
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+}
+
+.sparkle-star {
+  opacity: 0;
+  will-change: transform, opacity, filter;
+  transform-origin: center;
+  mix-blend-mode: screen;
+  animation:
+    sparkleDrift var(--sparkle-duration, 7.2s) cubic-bezier(0.32, 0, 0.18, 1) infinite,
+    sparkleFlash calc(var(--sparkle-duration, 7.2s) * 0.65) ease-in-out infinite;
+  animation-delay: var(--sparkle-delay, 0s);
+}
+
+.sparkle-star svg {
+  animation: sparkleSpin calc(var(--sparkle-duration, 7.2s) * 1.12) ease-in-out infinite;
+}
+
+.sparkle-star--hero svg {
+  filter:
+    drop-shadow(0 0 8px rgba(255, 255, 255, 0.98))
+    drop-shadow(0 0 18px rgba(255, 255, 255, 0.85))
+    drop-shadow(0 0 34px rgba(255, 255, 255, 0.45));
+}
+
+.sparkle-star--dust svg {
+  filter:
+    drop-shadow(0 0 4px rgba(255, 255, 255, 0.88))
+    drop-shadow(0 0 10px rgba(255, 255, 255, 0.42));
+}
+
+.sparkle-core {
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.46) 38%, transparent 74%);
+  filter: blur(11px);
+  transform: scale(2);
+  animation: sparkleHalo calc(var(--sparkle-duration, 7.2s) * 0.88) ease-in-out infinite;
+  animation-delay: var(--sparkle-delay, 0s);
+}
+
+.sparkle-star--dust .sparkle-core {
+  filter: blur(8px);
+  transform: scale(1.55);
+}
+
+@keyframes sparkleDrift {
+  0% {
+    opacity: 0.04;
+    transform: translate3d(0, 0, 0) scale(0.35) rotate(0deg);
+  }
+  20% {
+    opacity: calc(var(--sparkle-opacity, 0.7) * 0.55);
+  }
+  48% {
+    opacity: var(--sparkle-opacity, 0.7);
+    transform: translate3d(var(--sparkle-shift-x, 18px), calc(var(--sparkle-shift-y, -22px) * 0.45), 0) scale(1.18)
+      rotate(18deg);
+  }
+  72% {
+    opacity: calc(var(--sparkle-opacity, 0.7) * 0.6);
+  }
+  100% {
+    opacity: 0.08;
+    transform: translate3d(calc(var(--sparkle-shift-x, 18px) * -0.52), var(--sparkle-shift-y, -22px), 0) scale(0.48)
+      rotate(-16deg);
+  }
+}
+
+@keyframes sparkleFlash {
+  0%,
+  100% {
+    filter: brightness(0.8);
+  }
+  35% {
+    filter: brightness(1.18);
+  }
+  52% {
+    filter: brightness(1.8);
+  }
+  68% {
+    filter: brightness(1.02);
+  }
+}
+
+@keyframes sparkleHalo {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: scale(1.3);
+  }
+  50% {
+    opacity: 0.92;
+    transform: scale(2.7);
+  }
+}
+
+@keyframes sparkleSpin {
+  0% {
+    transform: rotate(0deg) scale(0.95);
+  }
+  50% {
+    transform: rotate(24deg) scale(1.08);
+  }
+  100% {
+    transform: rotate(-6deg) scale(0.98);
+  }
+}
+
+.lab-rainbow-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  background: rgba(255, 255, 255, 0.96);
+  color: #111217;
+  text-shadow: none;
+  box-shadow:
+    0 18px 40px rgba(9, 9, 11, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.16);
+  transition:
+    transform 180ms ease,
+    box-shadow 220ms ease,
+    filter 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.lab-rainbow-button::before,
+.lab-rainbow-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.lab-rainbow-button::before {
+  inset: -140%;
+  background: linear-gradient(
+    135deg,
+    #ff5f6d 0%,
+    #ffc371 17%,
+    #7cffcb 34%,
+    #5ad1ff 52%,
+    #7a7cff 70%,
+    #d76dff 86%,
+    #ff5f6d 100%
+  );
+  background-size: 220% 220%;
+  background-position: 0% 0%;
+  opacity: 0;
+  transform: translate3d(-10%, 10%, 0) rotate(0deg) scale(0.9);
+  filter: saturate(1.1) blur(8px);
+  transition: opacity 220ms ease, transform 320ms ease, filter 320ms ease;
+  z-index: 0;
+}
+
+.lab-rainbow-button::after {
+  inset: 2px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 248, 250, 0.94) 100%);
+  transition: background 220ms ease, opacity 220ms ease;
+  z-index: 1;
+}
+
+.lab-rainbow-button > span {
+  position: relative;
+  z-index: 2;
+  transition: color 220ms ease, text-shadow 220ms ease;
+}
+
+.lab-rainbow-button:hover,
+.lab-rainbow-button:focus-visible,
+.lab-rainbow-button:active {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 20px 44px rgba(9, 9, 11, 0.28),
+    0 0 28px rgba(255, 95, 109, 0.22),
+    0 0 34px rgba(90, 209, 255, 0.2);
+  filter: saturate(1.16) brightness(1.04);
+}
+
+.lab-rainbow-button:hover::before,
+.lab-rainbow-button:focus-visible::before,
+.lab-rainbow-button:active::before {
+  opacity: 1;
+  transform: translate3d(8%, -8%, 0) rotate(0deg) scale(1);
+  filter: saturate(1.18) blur(6px);
+  animation: labRainbowShift 2.2s linear infinite;
+}
+
+.lab-rainbow-button:hover::after,
+.lab-rainbow-button:focus-visible::after,
+.lab-rainbow-button:active::after {
+  background: linear-gradient(180deg, rgba(12, 12, 18, 0.2) 0%, rgba(10, 10, 14, 0.34) 100%);
+}
+
+.lab-rainbow-button:hover > span,
+.lab-rainbow-button:focus-visible > span,
+.lab-rainbow-button:active > span {
+  color: #ffffff;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.26);
+}
+
+@keyframes labRainbowShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/*
+  Particulas festivas que flotan hacia arriba.
+  Keyframes sin variables CSS: asi el navegador las ejecuta en la GPU (compositor)
+  y no recalcula estilos en cada cuadro. La duracion y el retraso llegan en linea.
+*/
+@keyframes heroFloatLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-50px, -115svh, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes heroFloatRight {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(50px, -115svh, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes heroSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-particle {
+  position: absolute;
+  bottom: -3rem;
+  opacity: 0;
+  animation: heroFloatRight 12s linear infinite;
+}
+
+.hero-particle.drift-left {
+  animation-name: heroFloatLeft;
+}
+
+.hero-particle-spin {
+  animation: heroSpin 10s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-particle {
+    animation: none;
+    bottom: auto;
+    top: var(--hero-rest-top, 50%);
+    opacity: 0.5;
+  }
+
+  .hero-particle-spin {
+    animation: none;
+  }
+}
+
+/* Gradiente de marca para textos destacados */
+.brand-gradient-text {
+  background-image: linear-gradient(90deg, #22d3ee 0%, #a78bfa 35%, #f472b6 68%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/*
+  Tarjeta con borde de colores que gira lentamente.
+  El giro es un transform sobre un cuadrado con degradado conico (lo resuelve la GPU, sin repintar);
+  ::after tapa el centro y deja visible solo 1px de borde.
+*/
+@keyframes glowSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.glow-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  left: 50%;
+  top: 50%;
+  width: 180cqw;
+  aspect-ratio: 1;
+  margin-left: -90cqw;
+  margin-top: -90cqw;
+  background: conic-gradient(#22d3ee, #a78bfa, #f472b6, #fbbf24, #34d399, #22d3ee);
+  opacity: 0.55;
+  animation: glowSpin 7s linear infinite;
+  transition: opacity 300ms ease;
+}
+
+.glow-card::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 1px;
+  border-radius: inherit;
+  background: #0c0c11;
+}
+
+.glow-card:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-card::before {
+    animation: none;
+  }
+}
+
+/* Linea del escaner QR */
+/* Solo transform: se anima en la GPU sin recalcular el layout */
+@keyframes heroScan {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(32cqw);
+  }
+}
+
+.hero-scan-line {
+  top: 8%;
+  animation: heroScan 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scan-line {
+    animation: none;
+    transform: translateY(16cqw);
+  }
+}
+
+/* Pulso que recorre el flujo del sistema */
+@keyframes pipelineX {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pipelineY {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.pipeline-pulse-x {
+  animation: pipelineX 3.2s ease-in-out infinite;
+}
+
+.pipeline-pulse-y {
+  animation: pipelineY 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pipeline-pulse-x,
+  .pipeline-pulse-y {
+    animation: none;
+    display: none;
+  }
+}
+
+/* En pantallas tactiles no hay cursor: la palabra del footer muestra el degradado suave */
+@media (hover: none) {
+  .spotlight-layer {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    opacity: 0.4;
+  }
+}
+
+
+/* Catalogo de plantillas: inclinacion 3D controlada por variables que actualiza el puntero */
+.template-card {
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transform-style: preserve-3d;
+}
+
+.template-card:hover {
+  will-change: transform;
+}
+
+/* Preguntas frecuentes: flecha que gira al abrir */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item[open] .faq-chevron {
+  transform: rotate(45deg);
+}
+
+/* Hero fuera de pantalla: sus particulas se detienen para no competir con el scroll */
+.hero-offscreen .hero-particle,
+.hero-offscreen .hero-particle-spin {
+  animation-play-state: paused;
+}
+
+/* Animaciones continuas en CSS puro (GPU): no ocupan el hilo principal durante el scroll */
+@keyframes bubbleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.bubble-float {
+  animation: bubbleFloat 3.2s ease-in-out infinite;
+}
+
+@keyframes tabProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.tab-progress {
+  animation: tabProgress linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble-float,
+  .tab-progress {
+    animation: none;
+  }
+}
+
+/*
+  Secciones inferiores: el navegador omite layout y pintura mientras estan lejos de la pantalla.
+  "auto" recuerda el alto real una vez pintadas, para que el scroll no salte.
+*/
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1100px;
+}
+
+/* En celulares (menos CPU) las figuras solo suben y se desvanecen, sin girar */
+@media (max-width: 767px) {
+  .hero-particle-spin {
+    animation: none;
+  }
+}

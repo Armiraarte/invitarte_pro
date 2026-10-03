@@ -1,0 +1,40 @@
+{
+  "name": "digital-invitation-pro",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/dev-with-php.ps1",
+    "dev:client": "vite --configLoader runner",
+    "build": "vite build",
+    "lint": "tsc --noEmit",
+    "preview": "vite preview",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "optimize:project-images": "node scripts/optimize-project-images.mjs",
+    "fetch:stock": "node scripts/fetch-stock-images.mjs",
+    "lighthouse": "npm run build && lhci autorun"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.2.10",
+    "@fontsource/cormorant-garamond": "^5.2.11",
+    "@fontsource/dancing-script": "^5.2.8",
+    "@google/genai": "^1.38.0",
+    "gsap": "^3.15.0",
+    "motion": "^12.34.3",
+    "qrcode": "^1.5.4",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.3.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0",
+    "vite-plugin-compression": "^0.5.1"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "BODA",
+  "description": "Crea, personaliza y comparte hermosas invitaciones digitales interactivas, perfectamente optimizadas para dispositivos móviles y elegantly centradas en pantallas de escritorio.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

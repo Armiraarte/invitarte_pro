@@ -1,0 +1,1358 @@
+﻿{
+    "eventCode":  "W9JSR86LCH",
+    "projectPath":  "invitaciones/W9JSR86LCH",
+    "appEntry":  "invitaciones/W9JSR86LCH/src/App.tsx",
+    "distPath":  "invitaciones/W9JSR86LCH/dist",
+    "templateSource":  "invitacion_plantilla/invitación-digital/plantilla",
+    "linkedAt":  "2026-06-24T01:40:57+02:00",
+    "createdFromTemplate":  "invitacion_plantilla/invitación-digital/plantilla",
+    "previewUrl":  "http://127.0.0.1:8000/invitaciones/W9JSR86LCH/dist/index.html",
+    "previewBuiltAt":  "2026-07-24T02:16:01-06:00",
+    "builderState":  {
+                         "packageId":  "ELEGANT",
+                         "formData":  {
+                                          "hostName":  "DAVID",
+                                          "eventTitle":  "DAVID JIMENEZ",
+                                          "sections":  [
+                                                           {
+                                                               "id":  "inicio",
+                                                               "type":  "HERO",
+                                                               "title":  "David JimÃ©nez \u0026 Claudia Alvarado",
+                                                               "subtitle":  "NUESTRA BODA",
+                                                               "content":  "Con la bendiciÃ³n de nuestros padres",
+                                                               "alignment":  "center",
+                                                               "bgType":  "image",
+                                                               "bgValue":  "",
+                                                               "height":  "100",
+                                                               "textColor":  "#9a3412",
+                                                               "positions":  {
+                                                                                 "title":  {
+                                                                                               "x":  18,
+                                                                                               "y":  -27
+                                                                                           },
+                                                                                 "subtitle":  {
+                                                                                                  "x":  0,
+                                                                                                  "y":  0
+                                                                                              },
+                                                                                 "content":  {
+                                                                                                 "x":  0,
+                                                                                                 "y":  -13
+                                                                                             }
+                                                                             },
+                                                               "animation":  {
+                                                                                 "type":  "fade",
+                                                                                 "duration":  0.7
+                                                                             },
+                                                               "elements":  [
+                                                                                {
+                                                                                    "id":  "inicio-subtitle",
+                                                                                    "kind":  "subtitle",
+                                                                                    "value":  "NUESTRA BODA",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  100
+                                                                                },
+                                                                                {
+                                                                                    "id":  "inicio-title",
+                                                                                    "kind":  "title",
+                                                                                    "value":  "David JimÃ©nez \u0026 Claudia Alvarado",
+                                                                                    "position":  {
+                                                                                                     "x":  18,
+                                                                                                     "y":  -27
+                                                                                                 },
+                                                                                    "layer":  200
+                                                                                },
+                                                                                {
+                                                                                    "id":  "inicio-hosts",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Con la bendiciÃ³n de nuestros padres",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  -13
+                                                                                                 },
+                                                                                    "layer":  300
+                                                                                },
+                                                                                {
+                                                                                    "id":  "inicio-message",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Hay momentos en la vida que son especiales por sÃ­ solos, pero compartirlos con las personas que amamos los hace inolvidables. Te esperamos para celebrar nuestra uniÃ³n.",
+                                                                                    "position":  {
+                                                                                                     "x":  1,
+                                                                                                     "y":  1
+                                                                                                 },
+                                                                                    "layer":  400
+                                                                                }
+                                                                            ],
+                                                               "imageStyle":  {
+                                                                                  "scale":  100,
+                                                                                  "fit":  "contain",
+                                                                                  "asSectionBackground":  false,
+                                                                                  "width":  260,
+                                                                                  "height":  300
+                                                                              },
+                                                               "contentImageStyle":  {
+                                                                                         "scale":  100,
+                                                                                         "fit":  "contain",
+                                                                                         "asSectionBackground":  false,
+                                                                                         "width":  220,
+                                                                                         "height":  200
+                                                                                     }
+                                                           },
+                                                           {
+                                                               "id":  "cuenta",
+                                                               "type":  "COUNTDOWN",
+                                                               "title":  "Cuenta regresiva",
+                                                               "alignment":  "center",
+                                                               "bgType":  "color",
+                                                               "bgValue":  "#fff9f2",
+                                                               "height":  "50",
+                                                               "textColor":  "#4b5563",
+                                                               "positions":  {
+                                                                                 "title":  {
+                                                                                               "x":  0,
+                                                                                               "y":  0
+                                                                                           },
+                                                                                 "countdown":  {
+                                                                                                   "x":  0,
+                                                                                                   "y":  0
+                                                                                               }
+                                                                             },
+                                                               "animation":  {
+                                                                                 "type":  "fade",
+                                                                                 "duration":  0.7
+                                                                             },
+                                                               "countdownTargetDate":  "2026-10-18T22:30:00.000Z",
+                                                               "elements":  [
+                                                                                {
+                                                                                    "id":  "cuenta-title",
+                                                                                    "kind":  "title",
+                                                                                    "value":  "Cuenta regresiva",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  100,
+                                                                                    "style":  {
+                                                                                                  "fontSize":  17
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "cuenta-panel",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Panel cuenta regresiva",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  200,
+                                                                                    "style":  {
+                                                                                                  "width":  240,
+                                                                                                  "height":  140,
+                                                                                                  "backgroundColor":  "rgba(255,255,255,0.64)",
+                                                                                                  "borderColor":  "#330aff",
+                                                                                                  "borderWidth":  0,
+                                                                                                  "borderRadius":  5,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "cuenta-tile-1",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta Dias",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  300,
+                                                                                    "style":  {
+                                                                                                  "width":  66,
+                                                                                                  "height":  76,
+                                                                                                  "backgroundColor":  "#171716",
+                                                                                                  "borderColor":  "#bdbcf1",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  24,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "cuenta-tile-2",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta Horas",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  400,
+                                                                                    "style":  {
+                                                                                                  "width":  66,
+                                                                                                  "height":  76,
+                                                                                                  "backgroundColor":  "#171716",
+                                                                                                  "borderColor":  "#bdbcf1",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  24,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "cuenta-tile-3",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta Minutos",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  500,
+                                                                                    "style":  {
+                                                                                                  "width":  66,
+                                                                                                  "height":  76,
+                                                                                                  "backgroundColor":  "#171716",
+                                                                                                  "borderColor":  "#bdbcf1",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  24,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "cuenta-tile-4",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta Segundos",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  600,
+                                                                                    "style":  {
+                                                                                                  "width":  66,
+                                                                                                  "height":  76,
+                                                                                                  "backgroundColor":  "#171716",
+                                                                                                  "borderColor":  "#bdbcf1",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  24,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                }
+                                                                            ],
+                                                               "imageStyle":  {
+                                                                                  "scale":  100,
+                                                                                  "fit":  "contain",
+                                                                                  "asSectionBackground":  false,
+                                                                                  "width":  260,
+                                                                                  "height":  300
+                                                                              },
+                                                               "contentImageStyle":  {
+                                                                                         "scale":  100,
+                                                                                         "fit":  "contain",
+                                                                                         "asSectionBackground":  false,
+                                                                                         "width":  220,
+                                                                                         "height":  200
+                                                                                     },
+                                                               "countdownStyle":  {
+                                                                                      "fontSize":  13,
+                                                                                      "textColor":  "#0a70ff"
+                                                                                  }
+                                                           },
+                                                           {
+                                                               "id":  "historia",
+                                                               "type":  "MESSAGE",
+                                                               "title":  "Nuestra historia",
+                                                               "content":  "Nos conocimos entre cafÃ©s largos, playlists compartidas y viajes improvisados. Con el tiempo descubrimos que nuestro lugar favorito siempre era donde estÃ¡bamos juntos. Hoy queremos celebrar ese camino con las personas que han sido parte de nuestra historia.",
+                                                               "alignment":  "center",
+                                                               "bgType":  "color",
+                                                               "bgValue":  "#ffffff",
+                                                               "height":  "100",
+                                                               "textColor":  "#4b5563",
+                                                               "positions":  {
+                                                                                 "title":  {
+                                                                                               "x":  0,
+                                                                                               "y":  0
+                                                                                           },
+                                                                                 "content":  {
+                                                                                                 "x":  -1,
+                                                                                                 "y":  -9
+                                                                                             }
+                                                                             },
+                                                               "animation":  {
+                                                                                 "type":  "fade",
+                                                                                 "duration":  0.7
+                                                                             },
+                                                               "elements":  [
+                                                                                {
+                                                                                    "id":  "historia-title",
+                                                                                    "kind":  "title",
+                                                                                    "value":  "Nuestra historia",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  100
+                                                                                },
+                                                                                {
+                                                                                    "id":  "historia-card-main",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta historia",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  200,
+                                                                                    "style":  {
+                                                                                                  "width":  240,
+                                                                                                  "height":  140,
+                                                                                                  "backgroundColor":  "rgba(255,255,255,0.88)",
+                                                                                                  "borderColor":  "#ecd8aa",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  28,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "historia-story",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Nos conocimos entre cafÃ©s largos, playlists compartidas y viajes improvisados. Con el tiempo descubrimos que nuestro lugar favorito siempre era donde estÃ¡bamos juntos. Hoy queremos celebrar ese camino con las personas que han sido parte de nuestra historia.",
+                                                                                    "position":  {
+                                                                                                     "x":  -1,
+                                                                                                     "y":  -9
+                                                                                                 },
+                                                                                    "layer":  300
+                                                                                },
+                                                                                {
+                                                                                    "id":  "historia-card-honor-1",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta honor 1",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  400,
+                                                                                    "style":  {
+                                                                                                  "width":  240,
+                                                                                                  "height":  140,
+                                                                                                  "backgroundColor":  "rgba(255,255,255,0.80)",
+                                                                                                  "borderColor":  "#f8f1df",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  20,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "historia-honor-1-role",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Padres de la novia",
+                                                                                    "position":  {
+                                                                                                     "x":  4,
+                                                                                                     "y":  -1
+                                                                                                 },
+                                                                                    "layer":  500
+                                                                                },
+                                                                                {
+                                                                                    "id":  "historia-honor-1-names",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Laura MartÃ­nez \u0026 Roberto Salazar",
+                                                                                    "position":  {
+                                                                                                     "x":  -5,
+                                                                                                     "y":  -2
+                                                                                                 },
+                                                                                    "layer":  600
+                                                                                },
+                                                                                {
+                                                                                    "id":  "historia-card-honor-2",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta honor 2",
+                                                                                    "position":  {
+                                                                                                     "x":  17,
+                                                                                                     "y":  -18
+                                                                                                 },
+                                                                                    "layer":  700,
+                                                                                    "style":  {
+                                                                                                  "width":  240,
+                                                                                                  "height":  140,
+                                                                                                  "backgroundColor":  "rgba(255,255,255,0.80)",
+                                                                                                  "borderColor":  "#f8f1df",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  20,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "historia-honor-2-role",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Padres del novio",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  104
+                                                                                                 },
+                                                                                    "layer":  800
+                                                                                },
+                                                                                {
+                                                                                    "id":  "historia-honor-2-names",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Claudia Herrera \u0026 Miguel Torres",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  130
+                                                                                                 },
+                                                                                    "layer":  900
+                                                                                },
+                                                                                {
+                                                                                    "id":  "historia-card-honor-3",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta honor 3",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  1000,
+                                                                                    "style":  {
+                                                                                                  "width":  240,
+                                                                                                  "height":  140,
+                                                                                                  "backgroundColor":  "rgba(255,255,255,0.80)",
+                                                                                                  "borderColor":  "#f8f1df",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  20,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "historia-honor-3-role",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Padrinos de velaciÃ³n",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  156
+                                                                                                 },
+                                                                                    "layer":  1100
+                                                                                },
+                                                                                {
+                                                                                    "id":  "historia-honor-3-names",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Ana Paula RÃ­os \u0026 Javier Montes",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  182
+                                                                                                 },
+                                                                                    "layer":  1200
+                                                                                }
+                                                                            ],
+                                                               "imageStyle":  {
+                                                                                  "scale":  100,
+                                                                                  "fit":  "contain",
+                                                                                  "asSectionBackground":  false,
+                                                                                  "width":  260,
+                                                                                  "height":  300
+                                                                              },
+                                                               "contentImageStyle":  {
+                                                                                         "scale":  100,
+                                                                                         "fit":  "contain",
+                                                                                         "asSectionBackground":  false,
+                                                                                         "width":  220,
+                                                                                         "height":  200
+                                                                                     }
+                                                           },
+                                                           {
+                                                               "id":  "ubicacion",
+                                                               "type":  "LOCATION",
+                                                               "title":  "Hacienda San JosÃ©",
+                                                               "content":  "Km 12.5 Carretera Real del Monte, TepotzotlÃ¡n, Edo. de MÃ©xico",
+                                                               "alignment":  "center",
+                                                               "bgType":  "color",
+                                                               "bgValue":  "#ffffff",
+                                                               "height":  "75",
+                                                               "textColor":  "#4b5563",
+                                                               "positions":  {
+                                                                                 "title":  {
+                                                                                               "x":  0,
+                                                                                               "y":  0
+                                                                                           },
+                                                                                 "content":  {
+                                                                                                 "x":  0,
+                                                                                                 "y":  26
+                                                                                             }
+                                                                             },
+                                                               "animation":  {
+                                                                                 "type":  "fade",
+                                                                                 "duration":  0.7
+                                                                             },
+                                                               "locationMapUrl":  "https://maps.google.com/?q=Hacienda+San+Jose+Tepotzotlan",
+                                                               "elements":  [
+                                                                                {
+                                                                                    "id":  "ubicacion-title",
+                                                                                    "kind":  "title",
+                                                                                    "value":  "Hacienda San JosÃ©",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  100
+                                                                                },
+                                                                                {
+                                                                                    "id":  "ubicacion-address",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Km 12.5 Carretera Real del Monte, TepotzotlÃ¡n, Edo. de MÃ©xico",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  26
+                                                                                                 },
+                                                                                    "layer":  200
+                                                                                }
+                                                                            ],
+                                                               "imageStyle":  {
+                                                                                  "scale":  100,
+                                                                                  "fit":  "contain",
+                                                                                  "asSectionBackground":  false,
+                                                                                  "width":  260,
+                                                                                  "height":  300
+                                                                              },
+                                                               "contentImageStyle":  {
+                                                                                         "scale":  100,
+                                                                                         "fit":  "contain",
+                                                                                         "asSectionBackground":  false,
+                                                                                         "width":  220,
+                                                                                         "height":  200
+                                                                                     }
+                                                           },
+                                                           {
+                                                               "id":  "itinerario",
+                                                               "type":  "ITINERARY",
+                                                               "title":  "Programa del dÃ­a",
+                                                               "alignment":  "center",
+                                                               "bgType":  "color",
+                                                               "bgValue":  "#fff9f2",
+                                                               "height":  "100",
+                                                               "textColor":  "#4b5563",
+                                                               "positions":  {
+                                                                                 "title":  {
+                                                                                               "x":  0,
+                                                                                               "y":  0
+                                                                                           }
+                                                                             },
+                                                               "animation":  {
+                                                                                 "type":  "fade",
+                                                                                 "duration":  0.7
+                                                                             },
+                                                               "itineraryItems":  [
+                                                                                      {
+                                                                                          "id":  "1",
+                                                                                          "time":  "16:30",
+                                                                                          "title":  "Ceremonia Religiosa",
+                                                                                          "icon":  "church"
+                                                                                      },
+                                                                                      {
+                                                                                          "id":  "2",
+                                                                                          "time":  "18:00",
+                                                                                          "title":  "Coctel de Bienvenida",
+                                                                                          "icon":  "toast"
+                                                                                      },
+                                                                                      {
+                                                                                          "id":  "3",
+                                                                                          "time":  "19:00",
+                                                                                          "title":  "RecepciÃ³n \u0026 Banquete",
+                                                                                          "icon":  "calendarNote"
+                                                                                      },
+                                                                                      {
+                                                                                          "id":  "4",
+                                                                                          "time":  "21:30",
+                                                                                          "title":  "Apertura de Pista \u0026 Baile",
+                                                                                          "icon":  "party"
+                                                                                      }
+                                                                                  ],
+                                                               "elements":  [
+                                                                                {
+                                                                                    "id":  "itinerario-title",
+                                                                                    "kind":  "title",
+                                                                                    "value":  "Programa del dÃ­a",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  100
+                                                                                },
+                                                                                {
+                                                                                    "id":  "itinerario-card-1",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta itinerario 1",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  200,
+                                                                                    "style":  {
+                                                                                                  "width":  240,
+                                                                                                  "height":  140,
+                                                                                                  "backgroundColor":  "rgba(255,255,255,0.54)",
+                                                                                                  "borderColor":  "#f8f1df",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  28,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "itinerario-node-1",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Icono itinerario 1",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  300,
+                                                                                    "style":  {
+                                                                                                  "width":  28,
+                                                                                                  "height":  28,
+                                                                                                  "backgroundColor":  "#ffffff",
+                                                                                                  "borderColor":  "#d8b567",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  999,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "itinerario-card-2",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta itinerario 2",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  400,
+                                                                                    "style":  {
+                                                                                                  "width":  240,
+                                                                                                  "height":  140,
+                                                                                                  "backgroundColor":  "rgba(255,255,255,0.54)",
+                                                                                                  "borderColor":  "#f8f1df",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  28,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "itinerario-node-2",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Icono itinerario 2",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  500,
+                                                                                    "style":  {
+                                                                                                  "width":  28,
+                                                                                                  "height":  28,
+                                                                                                  "backgroundColor":  "#ffffff",
+                                                                                                  "borderColor":  "#d8b567",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  999,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "itinerario-card-3",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta itinerario 3",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  600,
+                                                                                    "style":  {
+                                                                                                  "width":  240,
+                                                                                                  "height":  140,
+                                                                                                  "backgroundColor":  "rgba(255,255,255,0.54)",
+                                                                                                  "borderColor":  "#f8f1df",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  28,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "itinerario-node-3",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Icono itinerario 3",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  700,
+                                                                                    "style":  {
+                                                                                                  "width":  28,
+                                                                                                  "height":  28,
+                                                                                                  "backgroundColor":  "#ffffff",
+                                                                                                  "borderColor":  "#d8b567",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  999,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "itinerario-card-4",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Tarjeta itinerario 4",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  800,
+                                                                                    "style":  {
+                                                                                                  "width":  240,
+                                                                                                  "height":  140,
+                                                                                                  "backgroundColor":  "rgba(255,255,255,0.54)",
+                                                                                                  "borderColor":  "#f8f1df",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  28,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "itinerario-node-4",
+                                                                                    "kind":  "container",
+                                                                                    "value":  "Icono itinerario 4",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  900,
+                                                                                    "style":  {
+                                                                                                  "width":  28,
+                                                                                                  "height":  28,
+                                                                                                  "backgroundColor":  "#ffffff",
+                                                                                                  "borderColor":  "#d8b567",
+                                                                                                  "borderWidth":  1,
+                                                                                                  "borderRadius":  999,
+                                                                                                  "opacity":  100,
+                                                                                                  "shadow":  true,
+                                                                                                  "animation":  {
+                                                                                                                    "type":  "none",
+                                                                                                                    "duration":  0.6
+                                                                                                                }
+                                                                                              }
+                                                                                }
+                                                                            ],
+                                                               "imageStyle":  {
+                                                                                  "scale":  100,
+                                                                                  "fit":  "contain",
+                                                                                  "asSectionBackground":  false,
+                                                                                  "width":  260,
+                                                                                  "height":  300
+                                                                              },
+                                                               "contentImageStyle":  {
+                                                                                         "scale":  100,
+                                                                                         "fit":  "contain",
+                                                                                         "asSectionBackground":  false,
+                                                                                         "width":  220,
+                                                                                         "height":  200
+                                                                                     }
+                                                           },
+                                                           {
+                                                               "id":  "galeria",
+                                                               "type":  "IMAGE",
+                                                               "title":  "GalerÃ­a",
+                                                               "alignment":  "center",
+                                                               "bgType":  "color",
+                                                               "bgValue":  "#ffffff",
+                                                               "height":  "100",
+                                                               "textColor":  "#4b5563",
+                                                               "positions":  {
+                                                                                 "title":  {
+                                                                                               "x":  0,
+                                                                                               "y":  0
+                                                                                           }
+                                                                             },
+                                                               "animation":  {
+                                                                                 "type":  "fade",
+                                                                                 "duration":  0.7
+                                                                             },
+                                                               "elements":  [
+                                                                                {
+                                                                                    "id":  "galeria-title",
+                                                                                    "kind":  "title",
+                                                                                    "value":  "GalerÃ­a",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  100
+                                                                                }
+                                                                            ],
+                                                               "imageStyle":  {
+                                                                                  "scale":  100,
+                                                                                  "fit":  "contain",
+                                                                                  "asSectionBackground":  false,
+                                                                                  "width":  260,
+                                                                                  "height":  300
+                                                                              },
+                                                               "contentImageStyle":  {
+                                                                                         "scale":  100,
+                                                                                         "fit":  "contain",
+                                                                                         "asSectionBackground":  false,
+                                                                                         "width":  220,
+                                                                                         "height":  200
+                                                                                     }
+                                                           },
+                                                           {
+                                                               "id":  "detalles",
+                                                               "type":  "DETAILS",
+                                                               "title":  "Detalles del evento",
+                                                               "content":  "Formal",
+                                                               "alignment":  "center",
+                                                               "bgType":  "color",
+                                                               "bgValue":  "#fff9f2",
+                                                               "height":  "100",
+                                                               "textColor":  "#4b5563",
+                                                               "positions":  {
+                                                                                 "title":  {
+                                                                                               "x":  0,
+                                                                                               "y":  0
+                                                                                           },
+                                                                                 "content":  {
+                                                                                                 "x":  0,
+                                                                                                 "y":  26
+                                                                                             }
+                                                                             },
+                                                               "animation":  {
+                                                                                 "type":  "fade",
+                                                                                 "duration":  0.7
+                                                                             },
+                                                               "elements":  [
+                                                                                {
+                                                                                    "id":  "detalles-title",
+                                                                                    "kind":  "title",
+                                                                                    "value":  "Detalles del evento",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  100
+                                                                                },
+                                                                                {
+                                                                                    "id":  "detalles-dress-name",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Formal",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  26
+                                                                                                 },
+                                                                                    "layer":  200
+                                                                                },
+                                                                                {
+                                                                                    "id":  "detalles-dress-desc",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Vestido formal largo o midi y traje de gala.",
+                                                                                    "position":  {
+                                                                                                     "x":  -3,
+                                                                                                     "y":  7
+                                                                                                 },
+                                                                                    "layer":  300
+                                                                                },
+                                                                                {
+                                                                                    "id":  "detalles-dress-extra",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Rigurosa Etiqueta (Hombres de Traje Oscuro / Mujeres Vestido Largo)",
+                                                                                    "position":  {
+                                                                                                     "x":  12,
+                                                                                                     "y":  210
+                                                                                                 },
+                                                                                    "layer":  400
+                                                                                },
+                                                                                {
+                                                                                    "id":  "detalles-gift-1-name",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Liverpool (Mesa de Regalos)",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  104
+                                                                                                 },
+                                                                                    "layer":  500
+                                                                                },
+                                                                                {
+                                                                                    "id":  "detalles-gift-1-notes",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "CÃ³digo de evento: 50920491",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  130
+                                                                                                 },
+                                                                                    "layer":  600
+                                                                                },
+                                                                                {
+                                                                                    "id":  "detalles-gift-2-name",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Lluvia de Sobres",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  156
+                                                                                                 },
+                                                                                    "layer":  800
+                                                                                },
+                                                                                {
+                                                                                    "id":  "detalles-gift-2-notes",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "En la recepciÃ³n tendremos un buzÃ³n para sobres de obsequios en efectivo/transferencia.",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  182
+                                                                                                 },
+                                                                                    "layer":  900
+                                                                                }
+                                                                            ],
+                                                               "imageStyle":  {
+                                                                                  "scale":  100,
+                                                                                  "fit":  "contain",
+                                                                                  "asSectionBackground":  false,
+                                                                                  "width":  260,
+                                                                                  "height":  300
+                                                                              },
+                                                               "contentImageStyle":  {
+                                                                                         "scale":  100,
+                                                                                         "fit":  "contain",
+                                                                                         "asSectionBackground":  false,
+                                                                                         "width":  220,
+                                                                                         "height":  200
+                                                                                     }
+                                                           },
+                                                           {
+                                                               "id":  "logistica",
+                                                               "type":  "MESSAGE",
+                                                               "title":  "LogÃ­stica y apoyo",
+                                                               "content":  "Evento exclusivo para adultos.",
+                                                               "alignment":  "center",
+                                                               "bgType":  "color",
+                                                               "bgValue":  "#ffffff",
+                                                               "height":  "100",
+                                                               "textColor":  "#4b5563",
+                                                               "positions":  {
+                                                                                 "title":  {
+                                                                                               "x":  0,
+                                                                                               "y":  0
+                                                                                           },
+                                                                                 "content":  {
+                                                                                                 "x":  0,
+                                                                                                 "y":  26
+                                                                                             }
+                                                                             },
+                                                               "animation":  {
+                                                                                 "type":  "fade",
+                                                                                 "duration":  0.7
+                                                                             },
+                                                               "elements":  [
+                                                                                {
+                                                                                    "id":  "logistica-title",
+                                                                                    "kind":  "title",
+                                                                                    "value":  "LogÃ­stica y apoyo",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  100
+                                                                                },
+                                                                                {
+                                                                                    "id":  "logistica-note-1",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Evento exclusivo para adultos.",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  26
+                                                                                                 },
+                                                                                    "layer":  200
+                                                                                },
+                                                                                {
+                                                                                    "id":  "logistica-note-2",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Te pedimos confirmar asistencia antes del 18 de septiembre de 2026.",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  52
+                                                                                                 },
+                                                                                    "layer":  300
+                                                                                },
+                                                                                {
+                                                                                    "id":  "logistica-note-3",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Por logÃ­stica del venue, agradecemos llegar 20 minutos antes de la ceremonia.",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  78
+                                                                                                 },
+                                                                                    "layer":  400
+                                                                                },
+                                                                                {
+                                                                                    "id":  "logistica-stay-1-name",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Hotel Boutique Real del Monte",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  104
+                                                                                                 },
+                                                                                    "layer":  500
+                                                                                },
+                                                                                {
+                                                                                    "id":  "logistica-stay-1-address",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Centro de TepotzotlÃ¡n, Edo. de MÃ©xico",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  130
+                                                                                                 },
+                                                                                    "layer":  600
+                                                                                },
+                                                                                {
+                                                                                    "id":  "logistica-stay-1-notes",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "A 12 minutos de la hacienda. Pregunta por la tarifa especial para invitados.",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  156
+                                                                                                 },
+                                                                                    "layer":  700
+                                                                                },
+                                                                                {
+                                                                                    "id":  "logistica-parking",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "La hacienda cuenta con valet parking incluido para invitados.",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  800
+                                                                                },
+                                                                                {
+                                                                                    "id":  "logistica-shuttle",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "HabrÃ¡ transporte de regreso al hotel sugerido a las 00:30 y 02:00 hrs.",
+                                                                                    "position":  {
+                                                                                                     "x":  1,
+                                                                                                     "y":  -9
+                                                                                                 },
+                                                                                    "layer":  900
+                                                                                },
+                                                                                {
+                                                                                    "id":  "logistica-transport-notes",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Si requieres apoyo especial de movilidad, avÃ­sanos al confirmar tu asistencia.",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  234
+                                                                                                 },
+                                                                                    "layer":  1000
+                                                                                }
+                                                                            ],
+                                                               "imageStyle":  {
+                                                                                  "scale":  100,
+                                                                                  "fit":  "contain",
+                                                                                  "asSectionBackground":  false,
+                                                                                  "width":  260,
+                                                                                  "height":  300
+                                                                              },
+                                                               "contentImageStyle":  {
+                                                                                         "scale":  100,
+                                                                                         "fit":  "contain",
+                                                                                         "asSectionBackground":  false,
+                                                                                         "width":  220,
+                                                                                         "height":  200
+                                                                                     }
+                                                           },
+                                                           {
+                                                               "id":  "mensajes",
+                                                               "type":  "MESSAGE",
+                                                               "title":  "Fotos y mensajes",
+                                                               "content":  "DespuÃ©s del evento podrÃ¡s subir tus fotos y videos a nuestra carpeta compartida.",
+                                                               "alignment":  "center",
+                                                               "bgType":  "color",
+                                                               "bgValue":  "#fff9f2",
+                                                               "height":  "75",
+                                                               "textColor":  "#4b5563",
+                                                               "positions":  {
+                                                                                 "title":  {
+                                                                                               "x":  0,
+                                                                                               "y":  0
+                                                                                           },
+                                                                                 "content":  {
+                                                                                                 "x":  0,
+                                                                                                 "y":  26
+                                                                                             }
+                                                                             },
+                                                               "animation":  {
+                                                                                 "type":  "fade",
+                                                                                 "duration":  0.7
+                                                                             },
+                                                               "elements":  [
+                                                                                {
+                                                                                    "id":  "mensajes-title",
+                                                                                    "kind":  "title",
+                                                                                    "value":  "Fotos y mensajes",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  100
+                                                                                },
+                                                                                {
+                                                                                    "id":  "mensajes-share-message",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "DespuÃ©s del evento podrÃ¡s subir tus fotos y videos a nuestra carpeta compartida.",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  26
+                                                                                                 },
+                                                                                    "layer":  200
+                                                                                }
+                                                                            ],
+                                                               "imageStyle":  {
+                                                                                  "scale":  100,
+                                                                                  "fit":  "contain",
+                                                                                  "asSectionBackground":  false,
+                                                                                  "width":  260,
+                                                                                  "height":  300
+                                                                              },
+                                                               "contentImageStyle":  {
+                                                                                         "scale":  100,
+                                                                                         "fit":  "contain",
+                                                                                         "asSectionBackground":  false,
+                                                                                         "width":  220,
+                                                                                         "height":  200
+                                                                                     }
+                                                           },
+                                                           {
+                                                               "id":  "musica",
+                                                               "type":  "MUSIC",
+                                                               "title":  "MÃºsica del evento",
+                                                               "subtitle":  "Los invitados pueden proponer canciones.",
+                                                               "content":  "Audio principal cargado.\n\nPlaylist: https://spotify.com",
+                                                               "audioUrl":  "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                                                               "alignment":  "center",
+                                                               "bgType":  "color",
+                                                               "bgValue":  "#ffffff",
+                                                               "height":  "50",
+                                                               "textColor":  "#4b5563",
+                                                               "positions":  {
+                                                                                 "title":  {
+                                                                                               "x":  0,
+                                                                                               "y":  0
+                                                                                           },
+                                                                                 "subtitle":  {
+                                                                                                  "x":  0,
+                                                                                                  "y":  26
+                                                                                              },
+                                                                                 "content":  {
+                                                                                                 "x":  0,
+                                                                                                 "y":  52
+                                                                                             }
+                                                                             },
+                                                               "animation":  {
+                                                                                 "type":  "fade",
+                                                                                 "duration":  0.7
+                                                                             },
+                                                               "elements":  [
+                                                                                {
+                                                                                    "id":  "musica-title",
+                                                                                    "kind":  "title",
+                                                                                    "value":  "MÃºsica del evento",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  100
+                                                                                },
+                                                                                {
+                                                                                    "id":  "musica-subtitle",
+                                                                                    "kind":  "subtitle",
+                                                                                    "value":  "Los invitados pueden proponer canciones.",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  26
+                                                                                                 },
+                                                                                    "layer":  200
+                                                                                },
+                                                                                {
+                                                                                    "id":  "musica-content",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "Audio principal cargado.\n\nPlaylist: https://spotify.com",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  52
+                                                                                                 },
+                                                                                    "layer":  300
+                                                                                }
+                                                                            ],
+                                                               "imageStyle":  {
+                                                                                  "scale":  100,
+                                                                                  "fit":  "contain",
+                                                                                  "asSectionBackground":  false,
+                                                                                  "width":  260,
+                                                                                  "height":  300
+                                                                              },
+                                                               "contentImageStyle":  {
+                                                                                         "scale":  100,
+                                                                                         "fit":  "contain",
+                                                                                         "asSectionBackground":  false,
+                                                                                         "width":  220,
+                                                                                         "height":  200
+                                                                                     }
+                                                           },
+                                                           {
+                                                               "id":  "rsvp",
+                                                               "type":  "GUESTS",
+                                                               "title":  "ConfirmaciÃ³n de asistencia",
+                                                               "subtitle":  "Formulario RSVP",
+                                                               "content":  "AquÃ­ viven los datos de asistencia, acompaÃ±antes y mensajes finales.",
+                                                               "alignment":  "center",
+                                                               "bgType":  "color",
+                                                               "bgValue":  "#fff2e4",
+                                                               "height":  "75",
+                                                               "textColor":  "#9a3412",
+                                                               "positions":  {
+                                                                                 "title":  {
+                                                                                               "x":  0,
+                                                                                               "y":  0
+                                                                                           },
+                                                                                 "subtitle":  {
+                                                                                                  "x":  -4,
+                                                                                                  "y":  4
+                                                                                              },
+                                                                                 "content":  {
+                                                                                                 "x":  0,
+                                                                                                 "y":  52
+                                                                                             }
+                                                                             },
+                                                               "animation":  {
+                                                                                 "type":  "fade",
+                                                                                 "duration":  0.7
+                                                                             },
+                                                               "elements":  [
+                                                                                {
+                                                                                    "id":  "rsvp-title",
+                                                                                    "kind":  "title",
+                                                                                    "value":  "ConfirmaciÃ³n de asistencia",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  0
+                                                                                                 },
+                                                                                    "layer":  100,
+                                                                                    "style":  {
+                                                                                                  "fontSize":  25
+                                                                                              }
+                                                                                },
+                                                                                {
+                                                                                    "id":  "rsvp-subtitle",
+                                                                                    "kind":  "subtitle",
+                                                                                    "value":  "Formulario RSVP",
+                                                                                    "position":  {
+                                                                                                     "x":  -4,
+                                                                                                     "y":  4
+                                                                                                 },
+                                                                                    "layer":  200
+                                                                                },
+                                                                                {
+                                                                                    "id":  "rsvp-content",
+                                                                                    "kind":  "content",
+                                                                                    "value":  "AquÃ­ viven los datos de asistencia, acompaÃ±antes y mensajes finales.",
+                                                                                    "position":  {
+                                                                                                     "x":  0,
+                                                                                                     "y":  52
+                                                                                                 },
+                                                                                    "layer":  300
+                                                                                }
+                                                                            ],
+                                                               "imageStyle":  {
+                                                                                  "scale":  100,
+                                                                                  "fit":  "contain",
+                                                                                  "asSectionBackground":  false,
+                                                                                  "width":  260,
+                                                                                  "height":  300
+                                                                              },
+                                                               "contentImageStyle":  {
+                                                                                         "scale":  100,
+                                                                                         "fit":  "contain",
+                                                                                         "asSectionBackground":  false,
+                                                                                         "width":  220,
+                                                                                         "height":  200
+                                                                                     }
+                                                           }
+                                                       ],
+                                          "globalBg":  {
+                                                           "type":  "color",
+                                                           "value":  "#f8f1e8"
+                                                       }
+                                      }
+                     },
+    "builderStateUpdatedAt":  "2026-07-24T09:50:22+02:00",
+    "sourceUpdatedAt":  "2026-07-24T08:04:04.821Z"
+}

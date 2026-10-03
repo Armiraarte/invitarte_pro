@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitacion digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow" id="event-label"></p>
+          <h1 id="event-title"></h1>
+          <p class="hero-hosts" id="event-hosts"></p>
+          <p class="hero-message" id="event-message"></p>
+          <div class="hero-actions">
+            <a id="map-link" class="button button-primary" href="#" target="_blank" rel="noopener noreferrer">Ver ubicacion</a>
+            <a id="rsvp-link" class="button button-secondary" href="#" target="_blank" rel="noopener noreferrer">Confirmar por WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="hero-frame">
+          <div class="hero-photo" id="hero-photo">
+            <div class="hero-photo-placeholder">
+              <span>Portada</span>
+              <small>Cambia la imagen y los datos en <code>script.js</code></small>
+            </div>
+          </div>
+          <div class="hero-date">
+            <strong id="event-date"></strong>
+            <span id="event-venue"></span>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-stack">
+        <section class="panel panel-grid">
+          <article class="info-card">
+            <p class="card-kicker">Cuenta regresiva</p>
+            <div class="countdown" id="countdown">
+              <div><strong>00</strong><span>Dias</span></div>
+              <div><strong>00</strong><span>Horas</span></div>
+              <div><strong>00</strong><span>Min</span></div>
+              <div><strong>00</strong><span>Seg</span></div>
+            </div>
+          </article>
+
+          <article class="info-card">
+            <p class="card-kicker">Detalles</p>
+            <ul class="detail-list" id="detail-list"></ul>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <p class="eyebrow">Nuestra historia</p>
+            <h2>Una plantilla editable sin compilar</h2>
+          </div>
+          <p class="body-copy" id="story-copy"></p>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <p class="eyebrow">Itinerario</p>
+            <h2>Orden del evento</h2>
+          </div>
+          <div class="timeline" id="timeline"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <p class="eyebrow">Galeria</p>
+            <h2>Fotos o placeholders</h2>
+          </div>
+          <div class="gallery-grid" id="gallery"></div>
+        </section>
+
+        <section class="panel panel-grid">
+          <article class="info-card">
+            <p class="card-kicker">Mesa de regalos</p>
+            <div class="stack-list" id="gift-list"></div>
+          </article>
+
+          <article class="info-card">
+            <p class="card-kicker">Notas</p>
+            <div class="stack-list" id="note-list"></div>
+          </article>
+        </section>
+
+        <section class="panel footer-panel">
+          <div>
+            <p class="eyebrow">Playlist y cierre</p>
+            <h2 id="footer-title"></h2>
+            <p class="body-copy" id="footer-copy"></p>
+          </div>
+          <div class="footer-actions">
+            <a id="playlist-link" class="button button-secondary" href="#" target="_blank" rel="noopener noreferrer">Abrir playlist</a>
+            <button id="music-toggle" class="button button-ghost" type="button">Activar musica</button>
+          </div>
+          <audio id="background-audio" preload="none"></audio>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
