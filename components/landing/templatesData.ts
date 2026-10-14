@@ -9,6 +9,8 @@ export type InvitationTemplate = {
   description: string;
   palette: string[];
   badge?: string;
+  /* Invitacion real que se carga dentro del telefono (ej. '/demos/olivo/index.html'). Sin ella se dibuja `design`. */
+  previewUrl?: string;
   design: InviteDesign;
 };
 

@@ -73,7 +73,7 @@ const DataScreen: React.FC<{ color: string }> = ({ color }) => (
       ))}
     </div>
     <div className="mt-auto flex gap-[2.5cqw]">
-      {['Mapa', 'Música', 'RSVP'].map((chip) => (
+      {['Mapa', 'QR', 'RSVP'].map((chip) => (
         <span key={chip} className="flex flex-1 items-center justify-center gap-[1.5cqw] rounded-full py-[2.4cqw] text-[3.6cqw] font-semibold" style={{ backgroundColor: `${color}1f`, color }}>
           <Check className="h-[3cqw] w-[3cqw]" />
           {chip}
@@ -200,27 +200,89 @@ const ScanScreen: React.FC<{ color: string }> = ({ color }) => (
 
 const STEP_SCREENS = [PriceScreen, DataScreen, ShareScreen, ControlScreen, ScanScreen];
 
-const PhoneFrame: React.FC<{ index: number; className?: string }> = ({ index, className = '' }) => {
+/* Aluminio "Cosmic Orange" (iPhone 17 Pro): degradado con brillos para simular metal pulido */
+const ORANGE_METAL =
+  'linear-gradient(135deg, #ffc08f 0%, #f7792a 18%, #d9560f 42%, #ff9447 62%, #c44a0b 82%, #f58a3f 100%)';
+const ORANGE_BUTTON = 'linear-gradient(90deg, #a83d06 0%, #ff9a52 45%, #e0631a 70%, #9c3905 100%)';
+
+const PhoneButton: React.FC<{ side: 'left' | 'right'; top: string; height: string }> = ({ side, top, height }) => (
+  <span
+    className={`absolute w-[1.4cqw] ${side === 'left' ? '-left-[1.1cqw] rounded-l-[0.8cqw]' : '-right-[1.1cqw] rounded-r-[0.8cqw]'}`}
+    style={{ top, height, background: ORANGE_BUTTON, boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.35)' }}
+    aria-hidden="true"
+  />
+);
+
+const StatusBar: React.FC = () => (
+  <div className="absolute inset-x-0 top-0 z-20 flex h-[14cqw] items-center justify-between px-[9cqw] text-[4cqw] font-semibold text-white">
+    <span className="tabular-nums tracking-[-0.02em]">9:41</span>
+    <span className="flex items-center gap-[1.4cqw]">
+      <svg viewBox="0 0 18 12" className="h-[3cqw] w-[4.6cqw]" fill="currentColor" aria-hidden="true">
+        <rect x="0" y="8" width="3" height="4" rx="0.8" />
+        <rect x="5" y="5.5" width="3" height="6.5" rx="0.8" />
+        <rect x="10" y="3" width="3" height="9" rx="0.8" />
+        <rect x="15" y="0" width="3" height="12" rx="0.8" />
+      </svg>
+      <svg viewBox="0 0 16 12" className="h-[3cqw] w-[4.2cqw]" fill="currentColor" aria-hidden="true">
+        <path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.2-1.3A10.4 10.4 0 0 0 8 .4 10.4 10.4 0 0 0 .8 3.3L2 4.6a8.6 8.6 0 0 1 6-2.4Zm0 3.6c1.3 0 2.5.5 3.4 1.3l1.2-1.3A6.8 6.8 0 0 0 8 4a6.8 6.8 0 0 0-4.6 1.8l1.2 1.3c.9-.8 2.1-1.3 3.4-1.3Zm0 3.6c-.4 0-.8.2-1.1.4L8 11.6l1.1-1.8c-.3-.2-.7-.4-1.1-.4Z" />
+      </svg>
+      <span className="relative flex h-[3.4cqw] w-[7cqw] items-center rounded-[1cqw] border-[0.35cqw] border-white/50 p-[0.4cqw]">
+        <span className="h-full w-[80%] rounded-[0.5cqw] bg-white" />
+        <span className="absolute -right-[1cqw] top-1/2 h-[1.4cqw] w-[0.6cqw] -translate-y-1/2 rounded-r-full bg-white/50" />
+      </span>
+    </span>
+  </div>
+);
+
+const PhoneFrame: React.FC<{ index: number; className?: string; style?: React.CSSProperties }> = ({ index, className = '', style }) => {
   const Screen = STEP_SCREENS[index % STEP_SCREENS.length];
   const color = stepColor(index);
 
   return (
-    <div className={`[container-type:inline-size] ${className}`}>
-      <div className="relative aspect-[9/15.5] w-full rounded-[13cqw] bg-[#0b0b10] p-[3cqw] shadow-[inset_0_0_0_1.5px_rgba(255,255,255,0.12)]">
-        <div className="relative h-full w-full overflow-hidden rounded-[10.5cqw] bg-[#101017] [container-type:inline-size]">
-          <div className="absolute left-1/2 top-[3cqw] z-10 h-[6.5cqw] w-[28cqw] -translate-x-1/2 rounded-full bg-[#0b0b10]" />
-          <AnimatePresence initial={false} mode="popLayout">
-            <motion.div
-              key={index}
-              className="absolute inset-0 px-[7cqw] pb-[8cqw] pt-[16cqw]"
+    <div className={`[container-type:inline-size] ${className}`} style={style}>
+      <div
+        className="relative aspect-[9/19.5] w-full rounded-[15cqw] p-[1.1cqw]"
+        style={{
+          background: ORANGE_METAL,
+          boxShadow:
+            '0 4cqw 10cqw -2cqw rgba(0,0,0,0.75), 0 0 18cqw -4cqw rgba(249,115,22,0.45), inset 0 0 0 0.35cqw rgba(255,214,180,0.55), inset 0 -0.6cqw 1.2cqw rgba(90,30,0,0.45)'
+        }}
+      >
+        {/* Botones laterales: accion, volumen +/- (izq.) y encendido + control de camara (der.) */}
+        <PhoneButton side="left" top="17%" height="6%" />
+        <PhoneButton side="left" top="26%" height="10%" />
+        <PhoneButton side="left" top="38%" height="10%" />
+        <PhoneButton side="right" top="27%" height="15%" />
+        <PhoneButton side="right" top="62%" height="9%" />
+
+        {/* Bisel negro */}
+        <div className="relative h-full w-full rounded-[14cqw] bg-black p-[2.6cqw] shadow-[inset_0_0_0_0.3cqw_rgba(255,255,255,0.06)]">
+          <div className="relative h-full w-full overflow-hidden rounded-[11.6cqw] bg-[#0d0d12] [container-type:inline-size]">
+            <StatusBar />
+            {/* Dynamic Island */}
+            <div className="absolute left-1/2 top-[3cqw] z-30 flex h-[8.6cqw] w-[30cqw] -translate-x-1/2 items-center justify-end rounded-full bg-black pr-[2.6cqw]">
+              <span className="h-[3.2cqw] w-[3.2cqw] rounded-full bg-[radial-gradient(circle_at_35%_35%,#3b4a7a_0%,#14182b_45%,#050507_70%)] shadow-[0_0_0_0.4cqw_#111]" />
+            </div>
+            <AnimatePresence initial={false} mode="popLayout">
+              <motion.div
+                key={index}
+                className="absolute inset-0 px-[7cqw] pb-[11cqw] pt-[20cqw]"
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -14 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Screen color={color} />
-            </motion.div>
-          </AnimatePresence>
+                <Screen color={color} />
+              </motion.div>
+            </AnimatePresence>
+            {/* Indicador de inicio y reflejo del cristal */}
+            <span className="absolute bottom-[2.6cqw] left-1/2 z-20 h-[1.2cqw] w-[36cqw] -translate-x-1/2 rounded-full bg-white/80" aria-hidden="true" />
+            <div
+              className="pointer-events-none absolute inset-0 z-20"
+              style={{ background: 'linear-gradient(115deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.02) 32%, transparent 33%, transparent 100%)' }}
+              aria-hidden="true"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -307,7 +369,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
             aria-hidden="true"
           />
           <div
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full transition-[background] duration-700 lg:left-[72%]"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[44rem] w-[44rem] -translate-x-1/2 -translate-y-1/2 rounded-full transition-[background] duration-700 lg:left-[72%]"
             style={{ background: `radial-gradient(circle, ${activeColor}33 0%, transparent 65%)` }}
             aria-hidden="true"
           />
@@ -316,7 +378,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
             {/* Texto */}
             <div className="text-center lg:text-left">
               <p className="text-[12px] font-bold uppercase tracking-[0.28em] text-zinc-500">Cómo funciona</p>
-              <h2 className="mx-auto mt-3 max-w-[16ch] text-[2.1rem] leading-[1] tracking-[-0.045em] text-white sm:text-[2.8rem] lg:mx-0 lg:text-[3.4rem] xl:text-[3.8rem]" style={displayFont}>
+              <h2 className="mx-auto mt-3 max-w-[16ch] text-[2.1rem] leading-[1] tracking-[-0.045em] text-white sm:text-[2.8rem] lg:mx-0 lg:text-[3.4rem] xl:text-[4rem] 2xl:text-[4.8rem]" style={displayFont}>
                 De la lista al acceso, <span className="brand-gradient-text">en 5 pasos.</span>
               </h2>
 
@@ -339,10 +401,10 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                           <span className="w-7 text-[13px] font-bold tabular-nums" style={{ color: isActive ? color : undefined }}>
                             {item.step}
                           </span>
-                          <span className="text-[1.3rem] font-semibold tracking-[-0.01em] text-white">{item.title}</span>
+                          <span className="text-[1.3rem] font-semibold tracking-[-0.01em] text-white 2xl:text-[1.6rem]">{item.title}</span>
                         </div>
                         <div className={`grid transition-[grid-template-rows] duration-500 ease-out ${isActive ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-                          <p className="overflow-hidden pl-11 text-[1rem] leading-7 text-zinc-400">
+                          <p className="overflow-hidden pl-11 text-[1rem] leading-7 text-zinc-400 2xl:text-[1.15rem] 2xl:leading-8">
                             <span className="block pb-3">{item.description}</span>
                           </p>
                         </div>
@@ -355,7 +417,11 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
 
             {/* Telefono */}
             <div className="flex flex-col items-center">
-              <PhoneFrame index={activeStep} className="w-[12rem] sm:w-[13rem] lg:w-[16.5rem] xl:w-[17.5rem]" />
+              {/* El ancho sale de la altura disponible (proporción 9:19.5) para que el teléfono llene la pantalla */}
+              <PhoneFrame
+                index={activeStep}
+                className="w-[clamp(9rem,calc((100dvh-21rem)*0.4615),17rem)] lg:w-[clamp(15rem,calc((100dvh-7rem)*0.4615),26rem)]"
+              />
 
               {/* Celular: paso activo debajo del telefono */}
               <div className="mt-5 w-full max-w-[22rem] text-center lg:hidden">

@@ -287,7 +287,7 @@ export const WhyChooseUsPage: React.FC<WhyChooseUsPageProps> = (_props) => {
               La invitación digital de tu evento, lista para compartir.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-400">
-              Diseña una invitación elegante, clara y moderna con todo lo importante en un solo lugar, como fecha, ubicación, cuenta regresiva, música, confirmación y mucho más.
+              Diseña una invitación elegante, clara y moderna con todo lo importante en un solo lugar, como fecha, ubicación, cuenta regresiva, confirmación y mucho más.
             </p>
           </div>
 

@@ -1,11 +1,29 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { AnimatePresence, m as motion } from 'motion/react';
+import {
+  AnimatePresence,
+  MotionConfig,
+  m as motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+  type MotionValue
+} from 'motion/react';
 import { FloatingParticle, InviteScreen, PhoneShell, seeded, type InviteDesign, type ShapeKind } from './partyDesign';
+import { LiveInviteScreen } from './LiveInviteScreen';
 import type { MotionVariants } from './shared';
 
 type HeroSectionProps = {
   fadeInUp: MotionVariants;
   staggerGroup: MotionVariants;
+};
+
+type GuestNoteIcon = 'check' | 'qr' | 'users';
+
+type GuestNote = {
+  icon: GuestNoteIcon;
+  title: string;
+  detail: string;
 };
 
 type PartyTheme = {
@@ -17,9 +35,13 @@ type PartyTheme = {
   particles: ShapeKind[];
   particleColors: string[];
   invite: InviteDesign;
+  /* Invitacion real para el telefono principal (ej. '/demos/boda/index.html'). Sin ella se dibuja `invite`. */
+  previewUrl?: string;
+  notes: [GuestNote, GuestNote];
 };
 
 const ROTATE_EVERY_MS = 5200;
+const HOLD_AFTER_INTERACTION_MS = 12000;
 
 const PARTY_THEMES: PartyTheme[] = [
   {
@@ -42,7 +64,11 @@ const PARTY_THEMES: PartyTheme[] = [
       accent: '#b8925a',
       buttonText: '#1f1609',
       decor: ['petal', 'sparkle']
-    }
+    },
+    notes: [
+      { icon: 'check', title: 'Ana y Luis confirmaron', detail: '2 lugares · Mesa 7' },
+      { icon: 'qr', title: 'Acceso con QR', detail: 'Invitado 86 de 120' }
+    ]
   },
   {
     id: 'xv',
@@ -64,7 +90,11 @@ const PARTY_THEMES: PartyTheme[] = [
       accent: '#a31f72',
       buttonText: '#ffffff',
       decor: ['sparkle', 'heart']
-    }
+    },
+    notes: [
+      { icon: 'check', title: 'Mariana confirmó', detail: '3 lugares · Mesa 4' },
+      { icon: 'users', title: 'Confirmados', detail: '142 de 180 invitados' }
+    ]
   },
   {
     id: 'graduacion',
@@ -86,7 +116,11 @@ const PARTY_THEMES: PartyTheme[] = [
       accent: '#f5c451',
       buttonText: '#0c1d40',
       decor: ['star', 'confetti']
-    }
+    },
+    notes: [
+      { icon: 'check', title: 'Familia Ruiz confirmó', detail: '4 lugares · Fila B' },
+      { icon: 'qr', title: 'QR validado', detail: 'Entrada 58 de 90' }
+    ]
   },
   {
     id: 'cumpleanos',
@@ -108,7 +142,11 @@ const PARTY_THEMES: PartyTheme[] = [
       accent: '#fff3a0',
       buttonText: '#5a1a7a',
       decor: ['confetti', 'star']
-    }
+    },
+    notes: [
+      { icon: 'check', title: 'Diego confirmó', detail: '+1 acompañante' },
+      { icon: 'users', title: 'Confirmados', detail: '46 de 60 invitados' }
+    ]
   }
 ];
 
@@ -154,7 +192,15 @@ const PartyBackdrop: React.FC<{ theme: PartyTheme }> = ({ theme }) => {
 };
 
 
-const PhoneMockup: React.FC<{ theme: PartyTheme; className?: string }> = ({ theme, className = '' }) => (
+const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as const;
+
+const PhoneMockup: React.FC<{ theme: PartyTheme; className?: string; sheen?: boolean; live?: boolean; onInteract?: () => void }> = ({
+  theme,
+  className = '',
+  sheen = false,
+  live = false,
+  onInteract
+}) => (
   <PhoneShell className={className}>
     <AnimatePresence initial={false}>
       <motion.div
@@ -165,10 +211,72 @@ const PhoneMockup: React.FC<{ theme: PartyTheme; className?: string }> = ({ them
         exit={{ opacity: 0 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
       >
-        <InviteScreen invite={theme.invite} />
+        {/* Solo el telefono principal carga la invitacion real; los laterales siguen dibujados (mas ligeros) */}
+        {live && theme.previewUrl ? (
+          <LiveInviteScreen
+            src={theme.previewUrl}
+            title={`Invitación de ejemplo: ${theme.label}`}
+            fallback={<InviteScreen invite={theme.invite} />}
+            deferUntilLoad
+            onInteract={onInteract}
+          />
+        ) : (
+          <InviteScreen invite={theme.invite} />
+        )}
       </motion.div>
     </AnimatePresence>
+    {/* Destello de luz que cruza la pantalla en cada cambio de tema */}
+    {sheen ? <span key={`sheen-${theme.id}`} className="hero-sheen" aria-hidden="true" /> : null}
   </PhoneShell>
+);
+
+/* Capa que se desplaza con el puntero; mas profundidad = mas movimiento (efecto 3D) */
+const ParallaxLayer: React.FC<{
+  pointerX: MotionValue<number>;
+  pointerY: MotionValue<number>;
+  depth: number;
+  className?: string;
+  children: React.ReactNode;
+}> = ({ pointerX, pointerY, depth, className, children }) => {
+  const x = useTransform(pointerX, (value: number) => value * depth);
+  const y = useTransform(pointerY, (value: number) => value * depth);
+  return (
+    <motion.div className={className} style={{ x, y }}>
+      {children}
+    </motion.div>
+  );
+};
+
+const NOTE_ICONS: Record<GuestNoteIcon, string> = {
+  check: 'M20 6 9 17l-5-5',
+  qr: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM18 18h3v3h-3z',
+  users: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75'
+};
+
+/* Aviso flotante que muestra el control de invitados "en vivo" junto a los telefonos */
+const GuestNoteChip: React.FC<{ note: GuestNote; accent: string; themeId: string; delay: number }> = ({ note, accent, themeId, delay }) => (
+  <AnimatePresence initial={true}>
+    <motion.div
+      key={themeId}
+      className="absolute flex items-center gap-2.5 whitespace-nowrap rounded-2xl border border-white/12 bg-[rgba(14,11,22,0.86)] py-2 pl-2 pr-3.5 shadow-[0_18px_40px_-14px_rgba(0,0,0,0.7)] sm:gap-3 sm:py-2.5 sm:pl-2.5 sm:pr-4"
+      initial={{ opacity: 0, y: 14, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1, transition: { delay, duration: 0.6, ease: EASE_OUT_EXPO } }}
+      exit={{ opacity: 0, y: -8, scale: 0.96, transition: { duration: 0.25, ease: 'easeIn' } }}
+    >
+      <span
+        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full sm:h-9 sm:w-9"
+        style={{ background: `${accent}24`, color: accent, boxShadow: `inset 0 0 0 1px ${accent}55` }}
+      >
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d={NOTE_ICONS[note.icon]} />
+        </svg>
+      </span>
+      <span className="flex flex-col text-left leading-tight">
+        <span className="text-[11.5px] font-semibold text-white sm:text-[13px]">{note.title}</span>
+        <span className="mt-0.5 text-[10.5px] text-white/60 sm:text-[12px]">{note.detail}</span>
+      </span>
+    </motion.div>
+  </AnimatePresence>
 );
 
 const HeroSectionComponent: React.FC<HeroSectionProps> = ({ fadeInUp, staggerGroup }) => {
@@ -186,21 +294,57 @@ const HeroSectionComponent: React.FC<HeroSectionProps> = ({ fadeInUp, staggerGro
     return () => observer.disconnect();
   }, []);
 
+  // Si el visitante esta desplazando la invitacion del telefono, el tema no cambia hasta que deje de tocarla un rato.
+  const [holdTick, setHoldTick] = useState(0);
+  const lastHold = useRef(0);
+  const holdRotation = () => {
+    const now = Date.now();
+    if (now - lastHold.current < 1000) return;
+    lastHold.current = now;
+    setHoldTick((tick) => tick + 1);
+  };
+
   useEffect(() => {
     if (!isOnScreen) return;
-    const timer = window.setTimeout(() => setActiveIndex((index) => (index + 1) % total), ROTATE_EVERY_MS);
+    const delay = holdTick > 0 && Date.now() - lastHold.current < 1500 ? HOLD_AFTER_INTERACTION_MS : ROTATE_EVERY_MS;
+    const timer = window.setTimeout(() => setActiveIndex((index) => (index + 1) % total), delay);
     return () => window.clearTimeout(timer);
-  }, [activeIndex, total, isOnScreen]);
+  }, [activeIndex, total, isOnScreen, holdTick]);
+
+  // Parallax con el mouse: solo en escritorio con puntero fino y sin "reducir movimiento"
+  const reduceMotion = useReducedMotion();
+  const canParallax = useRef(false);
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springX = useSpring(pointerX, { stiffness: 70, damping: 20, mass: 0.6 });
+  const springY = useSpring(pointerY, { stiffness: 70, damping: 20, mass: 0.6 });
+
+  useEffect(() => {
+    canParallax.current = !reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  }, [reduceMotion]);
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!canParallax.current || event.pointerType !== 'mouse') return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    pointerX.set((event.clientX - rect.left) / rect.width - 0.5);
+    pointerY.set((event.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handlePointerLeave = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
 
   const theme = PARTY_THEMES[activeIndex];
   const prevTheme = PARTY_THEMES[(activeIndex - 1 + total) % total];
   const nextTheme = PARTY_THEMES[(activeIndex + 1) % total];
 
   return (
+    <MotionConfig reducedMotion="user">
     <section ref={sectionRef} className={`relative z-20 w-full ${isOnScreen ? '' : 'hero-offscreen'}`}>
       {/* Sin animacion de entrada: el titulo y el texto se pintan en el primer cuadro (mejor LCP) */}
       <motion.div initial={false} animate="visible" variants={staggerGroup} className="w-full">
-        <div className="relative overflow-hidden bg-[#0a0712]">
+        <div className="relative overflow-hidden bg-[#0a0712]" onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave}>
           <AnimatePresence initial={false}>
             <motion.div
               key={theme.id}
@@ -231,10 +375,15 @@ const HeroSectionComponent: React.FC<HeroSectionProps> = ({ fadeInUp, staggerGro
                       key={theme.id}
                       className="absolute inset-0 bg-clip-text text-transparent"
                       style={{ backgroundImage: theme.titleGradient }}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 1.2, ease: 'easeInOut' }}
+                      // Revelado de izquierda a derecha con desenfoque que se aclara
+                      initial={
+                        reduceMotion
+                          ? { opacity: 0 }
+                          : { opacity: 0, clipPath: 'inset(0% 100% 0% 0%)', filter: 'blur(6px)' }
+                      }
+                      animate={{ opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', filter: 'blur(0px)' }}
+                      exit={{ opacity: 0, transition: { duration: 0.5, ease: 'easeIn' } }}
+                      transition={{ duration: reduceMotion ? 0.8 : 1, ease: EASE_OUT_EXPO }}
                       aria-hidden="true"
                     >
                       Invitados
@@ -272,52 +421,89 @@ const HeroSectionComponent: React.FC<HeroSectionProps> = ({ fadeInUp, staggerGro
                   Ver cómo funciona
                 </a>
               </motion.div>
-
-              <motion.div variants={fadeInUp} className="mt-9 flex flex-nowrap justify-center gap-1 sm:gap-2 lg:justify-start" role="tablist" aria-label="Temáticas de fiesta">
-                {PARTY_THEMES.map((item, index) => {
-                  const isActive = index === activeIndex;
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      role="tab"
-                      aria-selected={isActive}
-                      onClick={() => setActiveIndex(index)}
-                      className={`relative overflow-hidden whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-semibold transition sm:px-4 ${
-                        isActive ? 'bg-white/18 text-white' : 'text-white/55 hover:text-white/85'
-                      }`}
-                    >
-                      {item.label}
-                      {isActive ? (
-                        <span
-                          key={`progress-${activeIndex}`}
-                          className="tab-progress absolute bottom-0 left-0 h-[2px] w-full origin-left bg-white/80"
-                          style={{ animationDuration: `${ROTATE_EVERY_MS}ms` }}
-                        />
-                      ) : null}
-                    </button>
-                  );
-                })}
-              </motion.div>
             </div>
 
             <motion.div variants={fadeInUp} className="relative flex items-center justify-center lg:justify-end">
               <div className="relative flex w-full max-w-[22rem] items-center justify-center py-4 sm:max-w-[30rem] lg:max-w-[36rem]">
-                <PhoneMockup
-                  theme={prevTheme}
-                  className="absolute left-0 top-1/2 w-[38%] -translate-y-[44%] -rotate-[9deg] opacity-80 sm:left-2"
-                />
-                <PhoneMockup
-                  theme={nextTheme}
-                  className="absolute right-0 top-1/2 w-[38%] -translate-y-[40%] rotate-[9deg] opacity-80 sm:right-2"
-                />
-                <PhoneMockup theme={theme} className="relative z-10 w-[56%]" />
+                {/* Resplandor del color del tema detras del telefono principal */}
+                <ParallaxLayer pointerX={springX} pointerY={springY} depth={-18} className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                  <AnimatePresence initial={false}>
+                    <motion.div
+                      key={theme.id}
+                      className="absolute aspect-square w-[95%] rounded-full"
+                      style={{ background: `radial-gradient(closest-side, ${theme.glows[0]}, transparent 72%)` }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 1.2, ease: 'easeInOut' }}
+                    />
+                  </AnimatePresence>
+                </ParallaxLayer>
+
+                {/* Entrada: los telefonos laterales se abren en abanico desde el centro */}
+                <ParallaxLayer pointerX={springX} pointerY={springY} depth={14} className="absolute left-0 top-1/2 w-[38%] sm:left-2">
+                  <motion.div
+                    initial={{ opacity: 0, x: '42%', y: '-38%', rotate: 0, scale: 0.9 }}
+                    animate={{ opacity: 0.8, x: '0%', y: '-44%', rotate: -9, scale: 1 }}
+                    transition={{ duration: 1.1, delay: 0.45, ease: EASE_OUT_EXPO }}
+                  >
+                    <div className="hero-phone-float" style={{ animationDelay: '-2s' }}>
+                      <PhoneMockup theme={prevTheme} className="w-full" />
+                    </div>
+                  </motion.div>
+                </ParallaxLayer>
+                <ParallaxLayer pointerX={springX} pointerY={springY} depth={14} className="absolute right-0 top-1/2 w-[38%] sm:right-2">
+                  <motion.div
+                    initial={{ opacity: 0, x: '-42%', y: '-34%', rotate: 0, scale: 0.9 }}
+                    animate={{ opacity: 0.8, x: '0%', y: '-40%', rotate: 9, scale: 1 }}
+                    transition={{ duration: 1.1, delay: 0.45, ease: EASE_OUT_EXPO }}
+                  >
+                    <div className="hero-phone-float" style={{ animationDelay: '-4s' }}>
+                      <PhoneMockup theme={nextTheme} className="w-full" />
+                    </div>
+                  </motion.div>
+                </ParallaxLayer>
+
+                <ParallaxLayer pointerX={springX} pointerY={springY} depth={26} className="relative z-10 w-[56%]">
+                  <motion.div
+                    initial={{ opacity: 0, y: 56, scale: 0.94 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 1, delay: 0.1, ease: EASE_OUT_EXPO }}
+                  >
+                    <div className="hero-phone-float">
+                      <PhoneMockup theme={theme} className="w-full" sheen live onInteract={holdRotation} />
+                    </div>
+                  </motion.div>
+                </ParallaxLayer>
+
+                {/* Avisos de confirmacion: muestran el control de invitados en tiempo real */}
+                <ParallaxLayer
+                  pointerX={springX}
+                  pointerY={springY}
+                  depth={40}
+                  className="pointer-events-none absolute left-[-4%] top-[13%] z-20 sm:left-[-6%]"
+                >
+                  <div className="hero-phone-float" style={{ animationDelay: '-1.5s' }} aria-hidden="true">
+                    <GuestNoteChip note={theme.notes[0]} accent={theme.particleColors[1]} themeId={theme.id} delay={0.9} />
+                  </div>
+                </ParallaxLayer>
+                <ParallaxLayer
+                  pointerX={springX}
+                  pointerY={springY}
+                  depth={34}
+                  className="pointer-events-none absolute bottom-[17%] right-[-4%] z-20 sm:right-[-6%]"
+                >
+                  <div className="hero-phone-float flex justify-end" style={{ animationDelay: '-3.5s' }} aria-hidden="true">
+                    <GuestNoteChip note={theme.notes[1]} accent={theme.particleColors[1]} themeId={theme.id} delay={1.7} />
+                  </div>
+                </ParallaxLayer>
               </div>
             </motion.div>
           </div>
         </div>
       </motion.div>
     </section>
+    </MotionConfig>
   );
 };
 

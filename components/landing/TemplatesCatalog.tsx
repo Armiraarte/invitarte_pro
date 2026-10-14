@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, m as motion } from 'motion/react';
 import { InviteScreen, PhoneShell } from './partyDesign';
+import { LiveInviteScreen } from './LiveInviteScreen';
 import { categoryLabel, INVITATION_TEMPLATES, TEMPLATE_CATEGORIES, type InvitationTemplate, type TemplateCategory } from './templatesData';
 import type { MotionVariants } from './shared';
 
@@ -12,7 +13,20 @@ type TemplatesCatalogProps = {
   onUseTemplate: (templateId: string) => void;
 };
 
-const INCLUDED_SECTIONS = ['Portada y cuenta regresiva', 'Ubicación con mapa', 'Confirmación de asistencia', 'Galería de fotos', 'Música de fondo', 'Acceso con QR por invitado'];
+const INCLUDED_SECTIONS = ['Portada y cuenta regresiva', 'Ubicación con mapa', 'Confirmación de asistencia', 'Galería de fotos', 'Acceso con QR por invitado'];
+const MAX_VISIBLE_TEMPLATES = 4;
+
+/* Pantalla del telefono: la invitacion real si la plantilla tiene `previewUrl`, si no el diseño dibujado */
+const TemplateScreen: React.FC<{ template: InvitationTemplate }> = ({ template }) =>
+  template.previewUrl ? (
+    <LiveInviteScreen
+      src={template.previewUrl}
+      title={`Plantilla ${template.name}`}
+      fallback={<InviteScreen invite={template.design} />}
+    />
+  ) : (
+    <InviteScreen invite={template.design} />
+  );
 
 /* Tarjeta con inclinacion 3D y reflejo que sigue al cursor (solo con mouse; en pantallas tactiles queda fija) */
 const TemplateCard: React.FC<{
@@ -63,11 +77,20 @@ const TemplateCard: React.FC<{
           <span className="absolute left-4 top-4 z-20 rounded-full bg-white px-2.5 py-1 text-[11px] font-bold text-zinc-950">{template.badge}</span>
         ) : null}
 
-        <button type="button" onClick={onPreview} className="relative block w-full pt-6" aria-label={`Ver plantilla ${template.name}`}>
-          <PhoneShell className="mx-auto w-[62%] transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:scale-[1.03]">
-            <InviteScreen invite={template.design} />
-          </PhoneShell>
-        </button>
+        {template.previewUrl ? (
+          // Con invitacion real el telefono no es boton: asi se puede desplazar la pagina dentro de el
+          <div className="relative block w-full pt-6">
+            <PhoneShell className="mx-auto w-[62%] transition-transform duration-500 ease-out group-hover:-translate-y-2">
+              <TemplateScreen template={template} />
+            </PhoneShell>
+          </div>
+        ) : (
+          <button type="button" onClick={onPreview} className="relative block w-full pt-6" aria-label={`Ver plantilla ${template.name}`}>
+            <PhoneShell className="mx-auto w-[62%] transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:scale-[1.03]">
+              <TemplateScreen template={template} />
+            </PhoneShell>
+          </button>
+        )}
 
         <div className="relative mt-5 flex items-start justify-between gap-3">
           <div className="min-w-0">
@@ -146,8 +169,18 @@ const TemplatePreview: React.FC<{ template: InvitationTemplate; onClose: () => v
         <div className="flex items-center justify-center p-8" style={{ background: `radial-gradient(circle at 50% 40%, ${accent}40 0%, transparent 70%)` }}>
           <motion.div initial={{ rotate: -4, y: 10 }} animate={{ rotate: 0, y: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="w-[14rem] sm:w-[16rem]">
             <PhoneShell>
-              <InviteScreen invite={template.design} />
+              <TemplateScreen template={template} />
             </PhoneShell>
+            {template.previewUrl ? (
+              <a
+                href={template.previewUrl}
+                target="_blank"
+                rel="noopener"
+                className="mt-4 block text-center text-[13px] font-semibold text-white/70 underline-offset-4 transition hover:text-white hover:underline"
+              >
+                Abrir en pantalla completa ↗
+              </a>
+            ) : null}
           </motion.div>
         </div>
 
@@ -202,7 +235,7 @@ export const TemplatesCatalog: React.FC<TemplatesCatalogProps> = ({ displayFont,
   const [category, setCategory] = useState<TemplateCategory | 'todas'>('todas');
   const [previewId, setPreviewId] = useState<string | null>(null);
   const visible = useMemo(
-    () => (category === 'todas' ? INVITATION_TEMPLATES : INVITATION_TEMPLATES.filter((template) => template.category === category)),
+    () => (category === 'todas' ? INVITATION_TEMPLATES : INVITATION_TEMPLATES.filter((template) => template.category === category)).slice(0, MAX_VISIBLE_TEMPLATES),
     [category]
   );
   const previewTemplate = INVITATION_TEMPLATES.find((template) => template.id === previewId) ?? null;
@@ -224,7 +257,7 @@ export const TemplatesCatalog: React.FC<TemplatesCatalogProps> = ({ displayFont,
             </h2>
           </motion.div>
           <motion.div variants={fadeInUp} className="flex flex-wrap gap-2">
-            {[`${INVITATION_TEMPLATES.length} diseños`, 'Personalizables', 'Incluidas en los $389'].map((chip) => (
+            {[`${visible.length} ${visible.length === 1 ? 'diseño' : 'diseños'}`, 'Personalizables', 'Incluidas en los $389'].map((chip) => (
               <span key={chip} className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-zinc-300">
                 {chip}
               </span>
@@ -257,7 +290,7 @@ export const TemplatesCatalog: React.FC<TemplatesCatalogProps> = ({ displayFont,
           })}
         </motion.div>
 
-        <div className="-mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 [&::-webkit-scrollbar]:hidden">
+        <div className="-mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 xl:grid-cols-4 [&::-webkit-scrollbar]:hidden">
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((template) => (
               <motion.div

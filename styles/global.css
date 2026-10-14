@@ -665,9 +665,56 @@ select:focus-visible {
   transform: rotate(45deg);
 }
 
+/* Hero: telefonos y avisos flotan suavemente (solo transform, GPU) */
+@keyframes heroPhoneFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+.hero-phone-float {
+  animation: heroPhoneFloat 6s ease-in-out infinite;
+}
+
+/* Destello diagonal que cruza la pantalla del telefono al cambiar de tema */
+@keyframes heroSheen {
+  from {
+    transform: translateX(-140%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+
+.hero-sheen {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  z-index: 5;
+  width: 40%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.32) 50%, transparent 100%);
+  animation: heroSheen 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-phone-float {
+    animation: none;
+  }
+
+  .hero-sheen {
+    display: none;
+  }
+}
+
 /* Hero fuera de pantalla: sus particulas se detienen para no competir con el scroll */
 .hero-offscreen .hero-particle,
-.hero-offscreen .hero-particle-spin {
+.hero-offscreen .hero-particle-spin,
+.hero-offscreen .hero-phone-float {
   animation-play-state: paused;
 }
 

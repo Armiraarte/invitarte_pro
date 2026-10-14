@@ -41,3 +41,8 @@ lighthouse-report.*
 # macOS archive metadata
 __MACOSX/
 ._*
+
+# Caches y configuracion local
+__pycache__/
+*.py[cod]
+**/settings.local.json

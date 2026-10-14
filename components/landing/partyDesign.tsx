@@ -109,7 +109,7 @@ export const seeded = (n: number) => {
 
 const INVITE_FEATURES = [
   { label: 'Ubicación', icon: 'M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Zm0-9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z' },
-  { label: 'Música', icon: 'M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm11-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z' },
+  { label: 'Fecha', icon: 'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4' },
   { label: 'Galería', icon: 'M4 5h16v14H4zM4 15l4.5-4.5 4 4 3-3L20 16M15.5 9a1 1 0 1 0 0-.01' }
 ];
 
